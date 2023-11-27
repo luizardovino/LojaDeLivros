@@ -1,0 +1,57 @@
+﻿@page
+@model LojaDeLivros.Pages.Livros.DeleteModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2>Excluir Livro</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Livro.Codl" />
+
+    <div class="form-group">
+        <label asp-for="Livro.Titulo"></label>
+        <input asp-for="Livro.Titulo" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Livro.Editora"></label>
+        <input asp-for="Livro.Editora" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Livro.Edicao"></label>
+        <input asp-for="Livro.Edicao" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Livro.AnoPublicacao"></label>
+        <input asp-for="Livro.AnoPublicacao" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Livro.Valor"></label>
+        <input asp-for="Livro.Valor" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label for="Autores">Autores</label>
+        <ul>
+            @foreach (var autor in Model.Livro.Autores)
+            {
+                <li>@autor.Autor.Nome</li>
+            }
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <label for="Assuntos">Assuntos</label>
+        <ul>
+            @foreach (var assunto in Model.Livro.Assuntos)
+            {
+                <li>@assunto.Assunto.Descricao</li>
+            }
+        </ul>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Confirmar Exclusão</button>
+    <a asp-page="./Index" class="btn btn-secondary btn-lg btn-block">Cancelar</a>
+</form>

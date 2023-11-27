@@ -1,0 +1,52 @@
+﻿@page
+@model LojaDeLivros.Pages.Livros.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2>Livros</h2>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Adicionar Livro</a>
+</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Editora</th>
+            <th>Edição</th>
+            <th>Ano de Publicação</th>
+            <th>Valor</th>
+            <th>Autores</th>
+            <th>Assuntos</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var livro in Model.Livros)
+        {
+            <tr>
+                <td>@livro.Titulo</td>
+                <td>@livro.Editora</td>
+                <td>@livro.Edicao</td>
+                <td>@livro.AnoPublicacao</td>
+                <td>@livro.Valor</td>
+                <td>
+                    @foreach (var autor in livro.Autores)
+                    {
+                        <span>@autor.Autor.Nome</span><br />
+                    }
+                </td>
+                <td>
+                    @foreach (var assunto in livro.Assuntos)
+                    {
+                        <span>@assunto.Assunto.Descricao</span><br />
+                    }
+                </td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@livro.Codl" class="btn btn-success btn-rounded">Editar</a> |
+                    <a asp-page="Delete" asp-route-id="@livro.Codl" class="btn btn-danger btn-rounded">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

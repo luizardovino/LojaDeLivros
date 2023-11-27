@@ -1,0 +1,67 @@
+﻿@page
+@model LojaDeLivros.Pages.Livros.CreateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2>Criar Livro</h2>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div class="form-group">
+        <label asp-for="Livro.Titulo"></label>
+        <input asp-for="Livro.Titulo" class="form-control input-largura-40" />
+        <span asp-validation-for="Livro.Titulo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Livro.Editora"></label>
+        <input asp-for="Livro.Editora" class="form-control input-largura-40" />
+        <span asp-validation-for="Livro.Editora" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Livro.Edicao"></label>
+        <input asp-for="Livro.Edicao" class="form-control input-largura-4"  />
+        <span asp-validation-for="Livro.Edicao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Livro.AnoPublicacao"></label>
+        <input asp-for="Livro.AnoPublicacao" class="form-control input-largura-4"  oninput="validarNumero(this)" />
+        <span asp-validation-for="Livro.AnoPublicacao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Livro.Valor"></label>
+        <input asp-for="Livro.Valor" class="form-control input-largura-4" oninput="validarValor(this)"/>
+         <span asp-validation-for="Livro.Valor" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label for="Autores">Autores</label>
+        <select asp-for="AutoresSelecionados" class="form-control input-largura-40" multiple>
+            @foreach (var autor in Model.Autores)
+            {
+                <option value="@autor.Value">@autor.Text</option>
+            }
+        </select>
+        <span class="text-danger" id="autoresValidation"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Assuntos">Assuntos</label>
+        <select asp-for="AssuntosSelecionados" class="form-control input-largura-40" multiple>
+            @foreach (var assunto in Model.Assuntos)
+            {
+                <option value="@assunto.Value">@assunto.Text</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
+    <a asp-page="./Index" class="btn btn-secondary btn-lg btn-block">Cancelar</a>
+
+
+</script>
+</form>
